@@ -1,0 +1,50 @@
+$text-color: AntiqueWhite
+
+
+.container
+  width: 80%
+  margin: 0 auto 40px
+
+.game
+
+  height: 500px
+  display: flex
+  justify-content: space-between
+
+  .game-options
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    width: 50%
+    background-color: OliveDrab
+    border: 1px solid black
+
+    h1
+      color: $text-color
+      text-align: center
+
+    .area-choice
+      display: flex
+      justify-content: space-around
+      flex-direction: column
+      align-items: center
+      *
+        width: 40%
+
+      .area-choice-text
+        display: inline-block
+        text-align: center
+        color: $text-color
+        font-size: 20px
+        font-weight: bold
+
+      .area-choice-size
+        display: flex
+        justify-content: space-between
+        button
+          height: 40px
+          width: 70px
+
+  img
+    height: 500px
