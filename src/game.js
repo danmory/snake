@@ -57,10 +57,6 @@ let startGame = () => {
             apple = new Apple(x, y)
         }
 
-        apple.show()
-        snake.show()
-
-        break
 
     }
 }
