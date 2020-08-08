@@ -1,13 +1,13 @@
 $text-color: AntiqueWhite
-
+$bg-color: OliveDrab
 
 .container
   width: 80%
-  margin: 0 auto 40px
+  margin: 0 auto
+
 
 .game
-
-  height: 500px
+  height: 480px
   display: flex
   justify-content: space-between
 
@@ -16,35 +16,45 @@ $text-color: AntiqueWhite
     display: flex
     flex-direction: column
     justify-content: space-around
-    width: 50%
-    background-color: OliveDrab
+    width: 480px
+    background-color: $bg-color
     border: 1px solid black
-
     h1
       color: $text-color
       text-align: center
-
-    .area-choice
+    .area-options
       display: flex
       justify-content: space-around
       flex-direction: column
       align-items: center
       *
         width: 40%
-
-      .area-choice-text
+      .area-options-text
         display: inline-block
         text-align: center
         color: $text-color
         font-size: 20px
         font-weight: bold
-
-      .area-choice-size
+      .area-options-size
         display: flex
         justify-content: space-between
         button
           height: 40px
           width: 70px
 
-  img
-    height: 500px
+
+  .game-logo
+    height: 480px
+
+
+  .game-area
+    width: 480px
+    height: 480px
+    font-size: 0
+    .area-cell
+      background-color: $bg-color
+      box-sizing: border-box
+      border: 0.5px solid black
+      display: inline-block
+      margin: 0
+      padding: 0

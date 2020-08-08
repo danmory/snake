@@ -1,16 +1,24 @@
-const area = document.querySelector('.area')
 const btns = document.getElementsByClassName('btn-size')
 const gameOptions = document.querySelector('.game-options')
 const gameArea = document.querySelector('.game-area')
 
-const createArea = sideSize => {
-    alert(sideSize)
+
+const createArea = cellSideSize => {
+    gameArea.style.display = 'block'
+    for (let i = 0; i < cellSideSize*cellSideSize; i++) {
+        let areaCell = document.createElement('div')
+        areaCell.classList.add('area-cell')
+        areaCell.style.width = `${parseInt(getComputedStyle(gameArea).width) / cellSideSize}px`
+        areaCell.style.height = `${parseInt(getComputedStyle(gameArea).height) / cellSideSize}px`
+        gameArea.appendChild(areaCell)
+    }
 }
 
 for (let btn of btns){
     btn.addEventListener('click', () => {
-        let sideSize = btn.value
+        let cellSideSize = btn.value
         gameOptions.style.display = 'none'
-        createArea(sideSize)
+        createArea(cellSideSize)
     })
 }
+
