@@ -122,7 +122,7 @@ let startGame = () => {
             clearInterval(interval)
             gameArea.style.display = 'none' // HIDE GAME AREA
             gameArea.innerHTML = ''
-            gameOptions.style.display = 'block' // SHOW GAME OPTIONS
+            gameOptions.style.display = 'flex' // SHOW GAME OPTIONS
         }
         gameOver = gameMove(nextMove, snake, apple)
     }, 600)
