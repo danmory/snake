@@ -147,8 +147,24 @@ let startGame = () => {
     let snake = new Snake()
     let apple = new Apple(sideCellCount)
     let nextMove = 'ArrowDown' // DEFAULT FIRST MOVE
+    let prevMove = 'ArrowDown'
 
-    document.addEventListener('keydown', e => nextMove = e.code)
+    document.addEventListener('keydown', e => {
+        prevMove = nextMove
+        nextMove = e.code
+        if (prevMove === 'ArrowDown' && nextMove === 'ArrowUp'){
+            nextMove = prevMove
+        }
+        else if (prevMove === 'ArrowUp' && nextMove === 'ArrowDown'){
+            nextMove = prevMove
+        }
+        else if (prevMove === 'ArrowLeft' && nextMove === 'ArrowRight'){
+            nextMove = prevMove
+        }
+        else if (prevMove === 'ArrowRight' && nextMove === 'ArrowLeft'){
+            nextMove = prevMove
+        }
+    })
 
     let gameOver = false
 
