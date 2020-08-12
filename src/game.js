@@ -5,6 +5,8 @@ import {Apple} from './models/apple'
 const btns = document.getElementsByClassName('btn-size')
 const gameOptions = document.querySelector('.game-options')
 const gameArea = document.querySelector('.game-area')
+const gameSpeed = document.querySelector('.game-speed input')
+
 let cellCount = 0 // TOTAL NUMBER OF CELLS
 let sideCellCount = 0
 
@@ -137,6 +139,11 @@ function gameMove(nextMove, snake, apple){
 
 let startGame = () => {
 
+    let gameSpeedValue = parseInt(gameSpeed.value)
+    if (isNaN(gameSpeedValue)) {
+        gameSpeedValue = 600
+    }
+
     let snake = new Snake()
     let apple = new Apple(sideCellCount)
     let nextMove = 'ArrowDown' // DEFAULT FIRST MOVE
@@ -151,7 +158,11 @@ let startGame = () => {
             clearInterval(interval)
             gameArea.style.display = 'none' // HIDE GAME AREA
             gameArea.innerHTML = ''
-            gameOptions.style.display = 'flex' // SHOW GAME OPTIONS
+            document.querySelector('.game-over').style.display = 'flex'
+            setTimeout(() => {
+                document.querySelector('.game-over').style.display = 'none'
+                gameOptions.style.display = 'flex'
+            }, 1500) // SHOW GAME OPTIONS
         }
         /* IF SNAKE DID NOT DIE AFTER PREVIOUS MOVE
         * VARIABLE gameOver CONTAINS RESULT OF THE LAST MOVE( IS SNAKE BUMPED INTO THE WALL/ITS BODY )
@@ -159,6 +170,6 @@ let startGame = () => {
         else {
             gameOver = gameMove(nextMove, snake, apple)
         }
-    }, 600)
+    }, gameSpeedValue)
 
 }
