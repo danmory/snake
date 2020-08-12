@@ -45,9 +45,16 @@ for (let btn of btns){
 function gameMove(nextMove, snake, apple){
     /* SNAKE MOVE LEFT */
     if (nextMove === 'ArrowLeft') {
+        let futureHeadCell = document.getElementById(`${snake.body[0][0] - 1}x${snake.body[0][1]}`)
+        /* SNAKE BUMPS INTO THE WALL*/
         if (snake.body[0][0] === 0){
             return true
         }
+        /* COLLISION */
+        else if (!futureHeadCell.isFree){
+            return true
+        }
+        /* SNAKE EATS THE APPLE */
         else if (apple.x === snake.body[0][0] - 1 && apple.y === snake.body[0][1]) {
             snake.eat(snake.body[0][0] - 1, snake.body[0][1])
             apple.create(sideCellCount)
@@ -60,9 +67,16 @@ function gameMove(nextMove, snake, apple){
     }
     /* SNAKE MOVE RIGHT */
     else if (nextMove === 'ArrowRight') {
+        let futureHeadCell = document.getElementById(`${snake.body[0][0] + 1}x${snake.body[0][1]}`)
+        /* SNAKE BUMPS INTO THE WALL*/
         if (snake.body[0][0] === sideCellCount - 1){
             return true
         }
+        /* COLLISION */
+        else if (!futureHeadCell.isFree){
+            return true
+        }
+        /* SNAKE EATS THE APPLE */
         else if (apple.x === snake.body[0][0] + 1 && apple.y === snake.body[0][1]) {
             snake.eat(snake.body[0][0] + 1, snake.body[0][1])
             apple.create(sideCellCount)
@@ -75,9 +89,16 @@ function gameMove(nextMove, snake, apple){
     }
     /* SNAKE MOVE UP */
     else if (nextMove === 'ArrowUp') {
+        let futureHeadCell = document.getElementById(`${snake.body[0][0]}x${snake.body[0][1] - 1}`)
+        /* SNAKE BUMPS INTO THE WALL*/
         if (snake.body[0][1] === 0){
             return true
         }
+        /* COLLISION */
+        else if (!futureHeadCell.isFree){
+            return true
+        }
+        /* SNAKE EATS THE APPLE */
         else if (apple.x === snake.body[0][0] && apple.y === snake.body[0][1] - 1) {
             snake.eat(snake.body[0][0], snake.body[0][1] - 1)
             apple.create(sideCellCount)
@@ -90,9 +111,16 @@ function gameMove(nextMove, snake, apple){
     }
     /* SNAKE MOVE DOWN */
     else if (nextMove === 'ArrowDown') {
+        let futureHeadCell = document.getElementById(`${snake.body[0][0]}x${snake.body[0][1]+1}`)
+        /* SNAKE BUMPS INTO THE WALL*/
         if (snake.body[0][1] === sideCellCount - 1){
             return true
         }
+        /* COLLISION */
+        else if (!futureHeadCell.isFree){
+            return true
+        }
+        /* SNAKE EATS THE APPLE */
         else if (apple.x === snake.body[0][0] && apple.y === snake.body[0][1] + 1) {
             snake.eat(snake.body[0][0], snake.body[0][1] + 1)
             apple.create(sideCellCount)
@@ -118,13 +146,19 @@ let startGame = () => {
     let gameOver = false
 
     let interval = setInterval(() => {
+        /* IF SNAKE DIED AFTER PREVIOUS MOVE */
         if (gameOver){
             clearInterval(interval)
             gameArea.style.display = 'none' // HIDE GAME AREA
             gameArea.innerHTML = ''
             gameOptions.style.display = 'flex' // SHOW GAME OPTIONS
         }
-        gameOver = gameMove(nextMove, snake, apple)
+        /* IF SNAKE DID NOT DIE AFTER PREVIOUS MOVE
+        * VARIABLE gameOver CONTAINS RESULT OF THE LAST MOVE( IS SNAKE BUMPED INTO THE WALL/ITS BODY )
+        */
+        else {
+            gameOver = gameMove(nextMove, snake, apple)
+        }
     }, 600)
 
 }

@@ -17,7 +17,9 @@ export class Snake{
     /* MOVE OF A SNAKE WITHOUT EATING AN APPLE*/
     move(x, y){
         this.body.unshift([x,y])
-        document.getElementById(`${x}x${y}`).classList.add('snake')
+        let futureHeadPosition = document.getElementById(`${x}x${y}`)
+        futureHeadPosition.classList.add('snake')
+        futureHeadPosition.isFree = false
         let tailPosition = this.body.pop()
         let tailCell = document.getElementById(`${tailPosition[0]}x${tailPosition[1]}`)
         tailCell.classList.remove('snake')

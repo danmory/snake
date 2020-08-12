@@ -7,9 +7,7 @@ function getRandomInt(min, max) {
 export class Apple{
     constructor(sideCellCount) {
         let x = getRandomInt(0, sideCellCount)
-        console.log(x)
         let y = getRandomInt(0, sideCellCount)
-        console.log(y)
         while (!document.getElementById(`${x}x${y}`).isFree){
             x = getRandomInt(0, sideCellCount)
             y = getRandomInt(0, sideCellCount)
@@ -21,9 +19,7 @@ export class Apple{
 
     create(sideCellCount){
         let x = getRandomInt(0, sideCellCount)
-        console.log(x)
         let y = getRandomInt(0, sideCellCount)
-        console.log(y)
         while (!document.getElementById(`${x}x${y}`).isFree){
             x = getRandomInt(0, sideCellCount)
             y = getRandomInt(0, sideCellCount)
