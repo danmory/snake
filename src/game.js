@@ -43,6 +43,7 @@ for (let btn of btns){
     })
 }
 
+let canChangeMove = true
 
 function gameMove(nextMove, snake, apple){
     /* SNAKE MOVE LEFT */
@@ -150,19 +151,19 @@ let startGame = () => {
     let prevMove = 'ArrowDown'
 
     document.addEventListener('keydown', e => {
-        prevMove = nextMove
-        nextMove = e.code
-        if (prevMove === 'ArrowDown' && nextMove === 'ArrowUp'){
-            nextMove = prevMove
-        }
-        else if (prevMove === 'ArrowUp' && nextMove === 'ArrowDown'){
-            nextMove = prevMove
-        }
-        else if (prevMove === 'ArrowLeft' && nextMove === 'ArrowRight'){
-            nextMove = prevMove
-        }
-        else if (prevMove === 'ArrowRight' && nextMove === 'ArrowLeft'){
-            nextMove = prevMove
+        if (canChangeMove) {
+            canChangeMove = false
+            prevMove = nextMove
+            nextMove = e.code
+            if (prevMove === 'ArrowDown' && nextMove === 'ArrowUp') {
+                nextMove = prevMove
+            } else if (prevMove === 'ArrowUp' && nextMove === 'ArrowDown') {
+                nextMove = prevMove
+            } else if (prevMove === 'ArrowLeft' && nextMove === 'ArrowRight') {
+                nextMove = prevMove
+            } else if (prevMove === 'ArrowRight' && nextMove === 'ArrowLeft') {
+                nextMove = prevMove
+            }
         }
     })
 
@@ -170,6 +171,7 @@ let startGame = () => {
 
     let interval = setInterval(() => {
         /* IF SNAKE DIED AFTER PREVIOUS MOVE */
+
         if (gameOver){
             clearInterval(interval)
             gameArea.style.display = 'none' // HIDE GAME AREA
@@ -185,6 +187,7 @@ let startGame = () => {
         */
         else {
             gameOver = gameMove(nextMove, snake, apple)
+            canChangeMove = true
         }
     }, gameSpeedValue)
 
