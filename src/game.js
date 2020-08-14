@@ -43,8 +43,6 @@ for (let btn of btns){
     })
 }
 
-let canChangeMove = true
-
 function gameMove(nextMove, snake, apple){
     /* SNAKE MOVE LEFT */
     if (nextMove === 'ArrowLeft') {
@@ -140,6 +138,8 @@ function gameMove(nextMove, snake, apple){
 
 let startGame = () => {
 
+    let canChangeMove = true
+
     let gameSpeedValue = parseInt(gameSpeed.value)
     if (isNaN(gameSpeedValue)) {
         gameSpeedValue = 600
@@ -150,7 +150,7 @@ let startGame = () => {
     let nextMove = 'ArrowDown' // DEFAULT FIRST MOVE
     let prevMove = 'ArrowDown'
 
-    document.addEventListener('keydown', e => {
+    let listener = document.addEventListener('keydown', e => {
         if (canChangeMove) {
             canChangeMove = false
             prevMove = nextMove
@@ -191,7 +191,6 @@ let startGame = () => {
                 resolve()
             })
                 .then(()=>canChangeMove = true)
-
         }
     }, gameSpeedValue)
 
