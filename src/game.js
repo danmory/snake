@@ -186,8 +186,12 @@ let startGame = () => {
         * VARIABLE gameOver CONTAINS RESULT OF THE LAST MOVE( IS SNAKE BUMPED INTO THE WALL/ITS BODY )
         */
         else {
-            gameOver = gameMove(nextMove, snake, apple)
-            canChangeMove = true
+            new Promise(resolve => {
+                gameOver = gameMove(nextMove, snake, apple)
+                resolve()
+            })
+                .then(()=>canChangeMove = true)
+
         }
     }, gameSpeedValue)
 
